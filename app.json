@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "CashCache",
+    "slug": "CashCache",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo.png",
+    "scheme": "cashcache",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.CashCache"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.CashCache"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "server",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      ["expo-router",{
+        "origin": "https://shinigxmi.dev/"
+      }
+    ],
+      "expo-asset",
+      "expo-video",
+      "expo-secure-store",
+      "expo-dynamic-app-icon"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
