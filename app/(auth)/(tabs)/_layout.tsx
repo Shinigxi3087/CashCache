@@ -47,7 +47,9 @@ const Layout = () => {
         title: 'Invest', 
         tabBarIcon: ({size, color}) => (
           <FontAwesome name='line-chart' size={size} color={color}/>
-        )
+        ),
+        header: () => <CustomHeader />,
+        headerTransparent: true,
       }}/>
       <Tabs.Screen name='lifestyle' options={{
         title: 'Lifestyle', 

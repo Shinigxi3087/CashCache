@@ -12,9 +12,10 @@ import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
-import { PieChart, ProgressChart } from 'react-native-chart-kit';
 
 const { width: screenWidth } = Dimensions.get('window');
+
+const periods = ['This Month', 'Last Month', 'Last 3 Months', 'This Year'];
 
 const Page = () => {
   const headerHeight = useHeaderHeight();
@@ -118,28 +119,8 @@ const Page = () => {
     },
   ];
 
-  // Pie chart data for spending distribution
-  const pieChartData = spendingCategories.map(category => ({
-    name: category.name.split(' ')[0],
-    population: category.spent,
-    color: category.color,
-    legendFontColor: Colors.dark,
-    legendFontSize: 11,
-  }));
-
   const totalSpent = spendingCategories.reduce((sum, cat) => sum + cat.spent, 0);
   const totalBudget = spendingCategories.reduce((sum, cat) => sum + cat.budget, 0);
-
-  const periods = ['This Week', 'This Month', 'Last Month', 'This Year'];
-
-  const chartConfig = {
-    backgroundColor: '#ffffff',
-    backgroundGradientFrom: '#ffffff',
-    backgroundGradientTo: '#ffffff',
-    color: (opacity = 1) => `rgba(67, 56, 202, ${opacity})`,
-    labelColor: (opacity = 1) => `rgba(107, 114, 128, ${opacity})`,
-    style: { borderRadius: 16 },
-  };
 
   const CategoryCard = ({ category }: { category: any }) => {
     const progress = (category.spent / category.budget) * 100;
@@ -281,17 +262,28 @@ const Page = () => {
       {/* Spending Distribution Chart */}
       <View style={[defaultStyles.block, { marginTop: 20 }]}>
         <Text style={styles.sectionTitle}>Spending Distribution</Text>
-        <PieChart
-          data={pieChartData}
-          width={screenWidth - 40}
-          height={200}
-          chartConfig={chartConfig}
-          accessor="population"
-          backgroundColor="transparent"
-          paddingLeft="15"
-          center={[10, 0]}
-          style={styles.chart}
-        />
+        
+        <View style={styles.customPieChart}>
+          <View style={styles.pieChartCenter}>
+            <Text style={styles.pieChartTotal}>€{totalSpent.toFixed(0)}</Text>
+            <Text style={styles.pieChartLabel}>Total Spent</Text>
+          </View>
+          
+          <View style={styles.pieChartLegend}>
+            {spendingCategories.map((category, index) => {
+              const percentage = ((category.spent / totalSpent) * 100).toFixed(1);
+              return (
+                <View key={category.id} style={styles.legendItem}>
+                  <View style={[styles.legendColor, { backgroundColor: category.color }]} />
+                  <View style={styles.legendText}>
+                    <Text style={styles.legendName}>{category.name.split(' ')[0]}</Text>
+                    <Text style={styles.legendValue}>€{category.spent.toFixed(0)} ({percentage}%)</Text>
+                  </View>
+                </View>
+              );
+            })}
+          </View>
+        </View>
       </View>
 
       {/* Spending Categories */}
@@ -491,6 +483,56 @@ const styles = StyleSheet.create({
   chart: {
     marginVertical: 8,
     borderRadius: 16,
+  },
+  customPieChart: {
+    padding: 20,
+  },
+  pieChartCenter: {
+    alignItems: 'center',
+    marginBottom: 20,
+    padding: 20,
+    backgroundColor: Colors.lightGray,
+    borderRadius: 16,
+  },
+  pieChartTotal: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: Colors.dark,
+  },
+  pieChartLabel: {
+    fontSize: 14,
+    color: Colors.gray,
+    marginTop: 4,
+  },
+  pieChartLegend: {
+    gap: 12,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    backgroundColor: Colors.lightGray,
+    borderRadius: 12,
+  },
+  legendColor: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    marginRight: 12,
+  },
+  legendText: {
+    flex: 1,
+  },
+  legendName: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: Colors.dark,
+  },
+  legendValue: {
+    fontSize: 12,
+    color: Colors.gray,
+    marginTop: 2,
   },
   categoriesSection: {
     marginTop: 20,

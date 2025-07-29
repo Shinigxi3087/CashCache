@@ -179,6 +179,64 @@ const InitialLayout = () =>  {
               ),
             }}
           />
+          <Stack.Screen
+            name="(auth)/(modals)/insights"
+            options={{
+              presentation: 'modal', // Changed from transparentModal
+              animation: 'slide_from_bottom', // Changed from fade
+              title: 'Insights',
+              headerStyle: {
+                backgroundColor: Colors.cardBackground,
+              },
+              headerTitleStyle: {
+                color: Colors.textPrimary,
+                fontWeight: 'bold',
+              },
+              headerShadowVisible: true, // Adds subtle shadow
+              headerLeft: () => (
+                <TouchableOpacity 
+                  onPress={router.back}
+                  style={{ marginLeft: 10 }}
+                >
+                  <Ionicons 
+                    name="close" // Changed from close-outline for more visibility
+                    size={28} 
+                    color={Colors.primary} 
+                  />
+                </TouchableOpacity>
+              ),
+            }}
+          />
+
+        <Stack.Screen
+          name="(auth)/(modals)/cards"
+          options={{
+            presentation: 'modal',
+            animation: 'slide_from_bottom',
+            title: 'My Cards',
+            headerStyle: {
+              backgroundColor: Colors.cardBackground,
+            },
+            headerTitleStyle: {
+              color: Colors.textPrimary,
+              fontWeight: 'bold',
+            },
+            headerShadowVisible: true,
+            headerLeft: () => (
+              <TouchableOpacity 
+                onPress={router.back}
+                style={{ marginLeft: 10 }}
+              >
+                <Ionicons 
+                  name="close" 
+                  size={28} 
+                  color={Colors.primary} 
+                />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+          
       </Stack>
       
 )}
