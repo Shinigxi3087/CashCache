@@ -236,6 +236,34 @@ const InitialLayout = () =>  {
             ),
           }}
         />
+        <Stack.Screen
+          name="(auth)/(modals)/addContact"
+          options={{
+            presentation: 'modal',
+            animation: 'slide_from_bottom',
+            title: 'Add New Contact',
+            headerStyle: {
+              backgroundColor: Colors.cardBackground,
+            },
+            headerTitleStyle: {
+              color: Colors.textPrimary,
+              fontWeight: 'bold',
+            },
+            headerShadowVisible: true,
+            headerLeft: () => (
+              <TouchableOpacity 
+                onPress={router.back}
+                style={{ marginLeft: 10 }}
+              >
+                <Ionicons 
+                  name="close" 
+                  size={28} 
+                  color={Colors.primary} 
+                />
+              </TouchableOpacity>
+            ),
+          }}
+        />
           
       </Stack>
       

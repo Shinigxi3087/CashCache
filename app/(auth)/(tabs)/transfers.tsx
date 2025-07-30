@@ -4,6 +4,7 @@ import Colors from '@/constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Link } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const TransfersPage = () => {
   const [amount, setAmount] = useState('');
@@ -18,10 +19,11 @@ const TransfersPage = () => {
   ];
 
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background }}>
+    <ScrollView style={styles.container} keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scrollContent}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>New Transfer</Text>
+        <Text style={styles.headerTitle}>Transfer Funds</Text>
         <Link href="../(modals)/transferhistory" asChild>
           <TouchableOpacity>
             <Text style={styles.historyLink}>History</Text>
@@ -33,7 +35,7 @@ const TransfersPage = () => {
       <View style={styles.section}>
         <Text style={styles.sectionLabel}>Amount</Text>
         <View style={styles.amountContainer}>
-          <Text style={styles.currencySymbol}>€</Text>
+          <Text style={styles.currencySymbol}>$</Text>
           <TextInput
             style={styles.amountInput}
             placeholder="0.00"
@@ -45,7 +47,7 @@ const TransfersPage = () => {
         </View>
       </View>
 
-      {/* Recipient Selection */}
+      {/* Contacts */}
       <View style={styles.section}>
         <Text style={styles.sectionLabel}>Send to</Text>
         <View style={styles.contactsContainer}>
@@ -71,10 +73,12 @@ const TransfersPage = () => {
             </TouchableOpacity>
           ))}
         </View>
-        <TouchableOpacity style={styles.addButton}>
-          <Ionicons name="add" size={24} color={Colors.primary} />
-          <Text style={styles.addButtonText}>Add new recipient</Text>
-        </TouchableOpacity>
+        <Link href="../(modals)/addContact" asChild>
+          <TouchableOpacity style={styles.addButton}>
+            <Ionicons name="add" size={24} color={Colors.primary} />
+            <Text style={styles.addButtonText}>Add new contact</Text>
+          </TouchableOpacity>
+        </Link>
       </View>
 
       {/* Transfer Note */}
@@ -90,17 +94,17 @@ const TransfersPage = () => {
       </View>
 
       {/* Transfer Button */}
-      <TouchableOpacity 
+      <TouchableOpacity
         style={[
-          defaultStyles.pillButton,
-          styles.transferButton,
+          styles.sendButton,
           (!amount || !selectedContact) && styles.disabledButton
         ]}
         disabled={!amount || !selectedContact}
       >
-        <Text style={defaultStyles.buttonText}>Transfer Now</Text>
+        <Text style={styles.sendButtonText}>Send</Text>
       </TouchableOpacity>
     </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -109,6 +113,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
     padding: 16,
+    paddingTop: 56,
+    paddingBottom: 56
   },
   header: {
     flexDirection: 'row',
@@ -214,9 +220,42 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 32,
   },
-  disabledButton: {
-    opacity: 0.5,
-  },
+
+  sendButton: {
+  backgroundColor: Colors.dark, // or '#000' if not defined
+  paddingVertical: 16,
+  borderRadius: 100,
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginHorizontal: 0,
+  marginTop: 8,
+  marginBottom: 32,
+  shadowColor: '#000',
+  shadowOpacity: 0.1,
+  shadowOffset: { width: 0, height: 2 },
+  shadowRadius: 6,
+  elevation: 3, // Android shadow
+},
+
+sendButtonText: {
+  color: '#fff',
+  fontSize: 16,
+  fontWeight: '600',
+},
+
+disabledButton: {
+  opacity: 0.4,
+},
+scrollContent: {
+  padding: 16,
+  paddingBottom: 80, 
+},
+
+buttonWrapper: {
+  marginTop: 0,
+  marginBottom: 32,
+},
+
 });
 
 export default TransfersPage;

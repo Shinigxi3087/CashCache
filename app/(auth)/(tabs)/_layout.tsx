@@ -41,7 +41,9 @@ const Layout = () => {
         title: 'Transfers', 
         tabBarIcon: ({size, color}) => (
           <Ionicons name='repeat' size={size} color={color}/>
-        )
+        ),
+        header: () => <CustomHeader />,
+        headerTransparent: true,
       }}/>
       <Tabs.Screen name='invest' options={{
         title: 'Invest', 
