@@ -42,11 +42,20 @@ A sleek and modern **React Native FinTech App** powered by **Clerk authenticatio
 | CoinGecko / CoinMarketCap | Real-time crypto prices  |
 
 ---
+**Screenshots**
 
+<img width="200" height="300" alt="Simulator Screenshot - iPhone 16 - 2025-08-05 at 16 22 27" src="https://github.com/user-attachments/assets/02dafeea-ec24-441e-8fb3-b3c1456dc328" />
+<img width="200" height="300" alt="Simulator Screenshot - iPhone 16 - 2025-08-05 at 16 22 30" src="https://github.com/user-attachments/assets/30d1da37-6a60-4ee8-8a02-2118c735aa47" />
+<img width="200" height="300" alt="Simulator Screenshot - iPhone 16 - 2025-08-05 at 16 22 34" src="https://github.com/user-attachments/assets/e3a8da35-5c0b-4c70-b7cc-be042bda5bcf" />
+<img width="200" height="300" alt="Simulator Screenshot - iPhone 16 - 2025-08-05 at 16 22 22" src="https://github.com/user-attachments/assets/84a403a1-8d33-4f43-9bfe-2109e93866ad" />
+<img width="200" height="300" alt="Simulator Screenshot - iPhone 16 - 2025-08-05 at 16 22 20" src="https://github.com/user-attachments/assets/ce4ce9a4-8a43-4e72-aac7-30b2c88a4e3a" />
+<img width="200" height="300" alt="Simulator Screenshot - iPhone 16 - 2025-08-05 at 16 22 09" src="https://github.com/user-attachments/assets/79a41916-335b-4046-ae4d-054fc79bfdc3" />
+
+
+---
 ## 🚀 Upcoming Features
 
 - 💼 Investing dashboard
-- 🔄 Peer-to-peer transfers
 - 🏦 Banking API integrations
 - 🔔 In-app notifications and activity feed
 
@@ -61,8 +70,5 @@ MIT License
 © 2025 Safwan Khan
 
 
-Let me know if you want to include:
-- Specific **screenshots or GIFs**
-- **Live demo links**
-- A better **project name or logo at the top**  
-Happy to customize!
+
+
